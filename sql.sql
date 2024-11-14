@@ -21,5 +21,10 @@ CREATE TABLE session (
     expires_at TIMESTAMP NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
+CREATE TABLE `track` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    recipient varchar(255) NOT NULL,
+    create_dt datetime NOT NULL,
+    read_dt datetime DEFAULT NULL
+)
 
