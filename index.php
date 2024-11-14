@@ -7,7 +7,7 @@ include('includes/navbar.php');
 <div class="py-5">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 text-center">
         <h4>Hệ thống đăng ký đăng nhập & xác nhận Email</h4>
         <h5>dùng PHPMailer</h5>
       </div>

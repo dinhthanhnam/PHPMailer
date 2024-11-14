@@ -13,7 +13,7 @@ include('includes/navbar.php');
             <h5>Form Đăng ký</h5>
           </div>
           <div class="card-body">
-            <form action="">
+            <form action="code.php" method="POST">
               <div class="form-group mb-3">
                 <label for="">Tên</label>
                 <input type="text" name="name" class="form-control">
@@ -35,7 +35,7 @@ include('includes/navbar.php');
                 <input type="password" name="confirm_password" class="form-control">
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary">Đăng ký</button>
+                <button type="submit" name="register_btn" class="btn btn-primary">Đăng ký</button>
               </div>
             </form>
           </div>
