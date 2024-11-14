@@ -23,11 +23,34 @@ function sendemail_verify($name, $email, $verify_token)
   $mail->isHTML(true);
   $mail->Subject = 'Email Verification';
   $email_template = "
-            <h2>Bạn đã thực hiện đăng ký trên trang của chúng mình</h2>
-            <h5>Nếu đây là hành động của bạn, vui lòng bấm xác nhận ở dưới để hoàn thành quá trình đăng ký</h5>
-            <br>
-            <a href='http://localhost/PHPMailer/verify_email.php?token=$verify_token'>Xác nhận</a>
-        ";
+    <div style='font-family: Arial, sans-serif; color: #333; line-height: 1.6;'>
+        <table width='100%' cellpadding='0' cellspacing='0' style='max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
+            <tr>
+                <td style='background-color: #4CAF50; padding: 20px; text-align: center;'>
+                    <h1 style='color: #ffffff; margin: 0;'>Chào mừng bạn!</h1>
+                </td>
+            </tr>
+            <tr>
+                <td style='padding: 20px;'>
+                    <h2 style='color: #4CAF50;'>Xin chào $name,</h2>
+                    <p>Bạn đã thực hiện đăng ký tài khoản trên trang của chúng tôi.</p>
+                    <p>Nếu đây là hành động của bạn, vui lòng bấm vào nút bên dưới để xác nhận email và hoàn thành quá trình đăng ký:</p>
+                    <div style='text-align: center; margin: 20px 0;'>
+                        <a href='http://localhost/PHPMailer/verify_email.php?token=$verify_token' style='display: inline-block; padding: 12px 20px; color: #ffffff; background-color: #4CAF50; text-decoration: none; border-radius: 5px; font-weight: bold;'>Xác nhận Email</a>
+                    </div>
+                    <p style='font-size: 14px; color: #555;'>Nếu bạn không thực hiện đăng ký này, vui lòng bỏ qua email này. Liên hệ với chúng tôi nếu bạn cần hỗ trợ.</p>
+                    <p>Trân trọng,<br>Đội ngũ Hỗ trợ</p>
+                </td>
+            </tr>
+            <tr>
+                <td style='background-color: #f0f0f0; padding: 15px; text-align: center; font-size: 12px; color: #888;'>
+                    <p>&copy; 2024 Lập trình PHP. Nhóm 6</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+";
+
   $mail->Body = $email_template;
 
   if (!$mail->send()) {
