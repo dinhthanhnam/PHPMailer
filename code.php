@@ -7,8 +7,30 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require "vendor/autoload.php";
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 function sendemail_verify($name, $email, $verify_token)
 {
+  try {
+    $db = new PDO("mysql:host=localhost;dbname=PHPMailer", "root", "");
+
+    $sql = "INSERT INTO track(recipient, create_dt)
+            VALUE (:rerecipient, :create_dt)";
+    $stmt = $db->prepare($sql);
+    $recipient = $email;
+    $create_dt = new DateTimeImmutable('now');
+    $stmt->execute([
+      ':rerecipient'=> $recipient,
+      ':create_dt'=> $create_dt ->format('Y-m-d H:i:s'),
+    ]);
+
+    $email_id = $db ->lastInsertId();
+  } catch (PDOException $e) {
+    echo "Lỗi kết nối: " . $e->getMessage();
+  }
+
+  $body_html = sprintf("<img src='http://localhost/PHPMailer/logo.php?email_id=%s&create_tmsp=%s' alt='logo'>",
+                $email_id, $create_dt->getTimestamp());
+
   $mail = new PHPMailer();
   $mail->isSMTP();
   $mail->Host = 'smtp.gmail.com';               // Máy chủ SMTP của Gmail
@@ -49,6 +71,7 @@ function sendemail_verify($name, $email, $verify_token)
             </tr>
         </table>
     </div>
+     $body_html 
 ";
 
   $mail->Body = $email_template;
@@ -65,6 +88,8 @@ if (isset($_POST["register_btn"])) {
   $password = $_POST['password'];
   $confirm_password = $_POST['confirm_password'];
   $verify_token = md5(rand());
+
+
 
   // Kiểm tra các trường có được nhập đầy đủ hay không
   if (empty($name) || empty($phone) || empty($email) || empty($password) || empty($confirm_password)) {
