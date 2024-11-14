@@ -32,3 +32,4 @@
     $_SESSION['status'] = 'Token này không tồn tại.';
     header('Location: login.php');
   }
+?>

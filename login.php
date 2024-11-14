@@ -42,6 +42,11 @@
                 <button type="submit" name="login_btn" class="btn btn-primary">Đăng nhập</button>
               </div>
             </form>
+            <hr>
+            <h5>
+              Không nhận được Email xác minh?
+              <a href="resend_email_verication.php">Gửi lại</a>
+            </h5>
           </div>
         </div>
       </div>
