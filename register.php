@@ -1,13 +1,22 @@
 <?php
-$page_title = "Đăng ký tài khoản";
-include('includes/header.php');
-include('includes/navbar.php');
+  $page_title = "Đăng ký tài khoản";
+  include('includes/header.php');
+  include('includes/navbar.php');
+  session_start();
 ?>
 
 <div class="py-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
+        <div class="alert">
+          <?php 
+            if(isset($_SESSION['status'])) {
+              echo "<h4>".$_SESSION['status']."</h4>";
+              unset($_SESSION['status']);
+            }
+          ?>
+        </div>
         <div class="card shadow">
           <div class="card-header">
             <h5>Form Đăng ký</h5>
